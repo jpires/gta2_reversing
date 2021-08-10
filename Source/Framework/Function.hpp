@@ -32,6 +32,8 @@
 TypeName LocalArray_##VarName[Size]=__VA_ARGS__;\
 GtaVar Var_##VarName(#VarName, Addr, sizeof(LocalArray_##VarName), std::is_pointer<TypeName>::value, std::is_const<TypeName>::value);\
 TypeName* VarName = (Redirect && RunningAsInjectedDll()) ? reinterpret_cast<TypeName*>(Addr) : reinterpret_cast<TypeName*>(&LocalArray_##VarName[0]);
+
+
 #define GTA_ARY_SIZEOF(VarName) sizeof(LocalArray_##VarName)
 
 // Only use this for pointers to arrays until it can be changed to GTA_ARY (so this is only used when the array size is not yet known)

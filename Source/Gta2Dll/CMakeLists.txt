@@ -1,4 +1,7 @@
-add_library(Gta2Dll SHARED dllmain.cpp)
+add_library(Gta2Dll SHARED
+    dllmain.cpp
+    File.cpp
+)
 
 target_include_directories(Gta2Dll PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>

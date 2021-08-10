@@ -1,6 +1,7 @@
 #include "logger.hpp"
 #include "Function.hpp"
 #include "ExportHooker.hpp"
+#include "File.hpp"
 
 bool RunningAsInjectedDll()
 {
@@ -25,12 +26,19 @@ extern "C"
 
 INITIALIZE_EASYLOGGINGPP;
 
+static void ForceLinkFunctions()
+{
+    ForceLink_File();
+}
+
 BOOL WINAPI DllMain(
     _In_ HINSTANCE hinstDLL,
     _In_ DWORD     fdwReason,
     _In_ LPVOID    /*lpvReserved*/
     )
 {
+    ForceLinkFunctions();
+
     if (fdwReason == DLL_PROCESS_ATTACH)
     {
         AllocConsole();
